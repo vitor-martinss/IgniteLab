@@ -1,18 +1,28 @@
-import { getAccessToken } from "@auth0/nextjs-auth0"
+import { getSession } from "@auth0/nextjs-auth0"
 import { GetServerSideProps } from "next"
 
 export default function Home() {
-  return (
-    <div >
-      hi
-      <a href="/api/auth/login">login</a>
-    </div>
-  )
+  return null;
 }
 
 export const getServerSideProps: GetServerSideProps = async ({res, req}) => {
-  const token = getAccessToken(req, res)
-  console.log(token)
+  const session = getSession(req, res)
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/api/auth/login",
+        permanent: false,
+      },
+    }
+  } else {
+    return {
+      redirect: {
+        destination: "/app",
+        permanent: false,
+      },
+    }
+  }
   return {
     props: {}
   }
