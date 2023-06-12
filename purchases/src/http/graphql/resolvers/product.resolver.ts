@@ -5,7 +5,7 @@ import { Product } from '../models/product';
 import { ProductsService } from '../../../services/products.service';
 import { CreateProductInputs } from '../inputs/create-product-inputs';
 
-@Resolver()
+@Resolver(() => Product)
 export class ProductsResolver {
   constructor(private productsService: ProductsService) {}
 
