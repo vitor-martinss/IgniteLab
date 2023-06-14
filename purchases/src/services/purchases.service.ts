@@ -22,7 +22,7 @@ export class PurchasesService {
   }
 
   listAllFromCustomer(customerId: string) {
-    return this.prisma.product.findMany({
+    return this.prisma.purchase.findMany({
       where: {
         customerId,
       },
