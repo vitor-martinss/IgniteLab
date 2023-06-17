@@ -4,8 +4,8 @@ import { DatabaseModule } from '../database/database.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import path from 'node:path';
 import { ApolloDriver } from '@nestjs/apollo';
-import { CourseResolver } from './graphql/resolvers/course.resolver';
-import { EnrollmentResolver } from './graphql/resolvers/enrollment.resolver';
+import { CourseResolver } from './graphql/resolvers/courses.resolver';
+import { EnrollmentsResolver } from './graphql/resolvers/enrollment.resolver';
 import { StudentsResolver } from './graphql/resolvers/students.resolver';
 import { CoursesService } from '../services/courses.service';
 import { EnrollmentsService } from '../services/enrollments.service';
@@ -23,7 +23,7 @@ import { StudentsService } from '../services/students.service';
   providers: [
     //Resolvers
     CourseResolver,
-    EnrollmentResolver,
+    EnrollmentsResolver,
     StudentsResolver,
 
     // Services
