@@ -1,8 +1,22 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(3334);
+  app.connectMicroservice<MicroserviceOptions>({
+    transport: Transport.KAFKA,
+    options: {
+      client: {
+        clientId: 'classroom',
+        brokers: ['localhost:29092'],
+      },
+    },
+  });
+
+  app
+    .startAllMicroservices()
+    .then(() => console.log('Microservices are listening'));
+  app.listen(3334).then(() => console.log('HTTP Server is listening'));
 }
 bootstrap();
